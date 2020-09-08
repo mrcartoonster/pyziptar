@@ -1,4 +1,4 @@
-#Pyziptar
+# Pyziptar
 > Magically unzip/decompress or zip/compress files with the power of Python and typer!
 
 
