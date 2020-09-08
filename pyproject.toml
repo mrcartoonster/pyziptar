@@ -1,0 +1,40 @@
+[tool.poetry]
+name = "pyziptar"
+version = "0.1.0"
+description = ""
+authors = ["Mrnobody <mrcartoonster@icloud.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+typer = {extras = ["all"], version = "^0.3.2"}
+click-spinner = "^0.1.10"
+tqdm = "^4.48.2"
+tabulate = "^0.8.7"
+click-help-colors = "^0.8"
+click-didyoumean = "^0.0.3"
+rich = "^6.1.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.0.1"
+pytest-emoji = "^0.2.0"
+pytest-instafail = "^0.4.2"
+pytest-html = "^2.1.1"
+pytest-cov = "^2.10.1"
+pytest-picked = "^0.4.4"
+pre-commit = "^2.7.1"
+ipython = "^7.18.1"
+prettyprinter = "^0.18.0"
+pretty_errors = "^1.2.18"
+
+[tool.pytest.ini_options]
+addopts = "-rssxX -l --tb=short --strict --emoji -vvv"
+xfail_strict = "True"
+markers = [
+  "smoke",
+  "fire",
+  "verify"
+]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
