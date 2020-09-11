@@ -5,7 +5,7 @@ from zipfile import ZipFile
 
 import typer
 
-app = typer.Typer(help="App that unzips zi files given.")
+app = typer.Typer()
 
 
 @app.command()
@@ -40,6 +40,7 @@ def unzip(
         help="Password to unzip password protected zip files.",
     ),
 ):
+    """Unzip zipfiles with all the options!"""
     if names:
         with ZipFile(file, "r") as n:
             typer.echo(n.namelist())
