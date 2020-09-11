@@ -1,42 +1,59 @@
 # -*- coding: utf-8 -*-
-# from typing import List, Optional
 from pathlib import Path
 from typing import Optional
-
 from zipfile import ZipFile
+
 import typer
 
 app = typer.Typer(help="App that unzips zi files given.")
 
 
 @app.command()
-def zip(
+def unzip(
     file: Path = typer.Argument(
         ...,
+        metavar="unzipfile",
         exists=True,
         file_okay=True,
         dir_okay=False,
         resolve_path=True,
-        help=(
-            (
-                "File will be extracted in current working directory. To "
-                "extract file in selected directory, pass --path/-p flag."
-            )
-        ),
+        help="Pass zipfile(s) to be extracted in current working directory.",
     ),
     names: Optional[bool] = typer.Option(
         False,
         "--names",
         "-n",
-        help="List the file names within the zip file."
-    )
+        help="List the file names within the zip file.",
+    ),
+    path: Optional[Path] = typer.Option(
+        None,
+        "--path",
+        "-p",
+        exists=False,
+        resolve_path=True,
+        help="Path zipfile will be extracted to.",
+    ),
+    pwd: Optional[str] = typer.Option(
+        None,
+        "--password",
+        "-pwd",
+        help="Password to unzip password protected zip files.",
+    ),
 ):
     if names:
-        with ZipFile(file, 'r') as n:
+        with ZipFile(file, "r") as n:
             typer.echo(n.namelist())
 
+    if path:
+        with ZipFile(file, "r") as p:
+            p.extractall(path)
+
+    if pwd:
+        with ZipFile(file, "r") as pwd:
+            p.extractall(path=file, pwd=pwd)
+
     else:
-        with ZipFile(file, 'r') as f:
+        with ZipFile(file, "r") as f:
             f.extractall()
 
 
