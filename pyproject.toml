@@ -36,7 +36,8 @@ xfail_strict = "True"
 markers = [
   "smoke",
   "fire",
-  "verify"
+  "verify",
+  "steam"
 ]
 
 [build-system]
