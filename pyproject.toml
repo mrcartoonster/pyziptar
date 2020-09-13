@@ -34,10 +34,11 @@ black = {version = "^20.8b1", allow-prereleases = true}
 addopts = "-rssxX -l --tb=short --strict --emoji -vvv"
 xfail_strict = "True"
 markers = [
-  "smoke",
-  "fire",
-  "verify",
-  "steam"
+    "version",
+    "first",
+    "second",
+    "third",
+    "fourth"
 ]
 
 [build-system]

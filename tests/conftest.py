@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from zipfile import ZipFile
+
 import pytest
 from mimesis.enums import Gender
 from mimesis.schema import Field, Schema
@@ -7,7 +9,7 @@ from yakutils import write_csv
 
 
 def fake(items: int = 20):
-    """Mimesis fake function using tutorial example"""
+    """Mimesis fake function using tutorial example."""
 
     _ = Field("en")
 
@@ -32,15 +34,20 @@ def fake(items: int = 20):
 
 @pytest.fixture(scope="module")
 def zipfile_csv(tmp_path_factory):
-    """CSV file and directory creator"""
+    """CSV file and directory creator."""
 
-    mydir = tmp_path_factory.mkdir("mydir")
+    mydir = tmp_path_factory.mktemp("mydir")
 
     a_csv = mydir / "description.csv"
 
     write_csv(fake(), a_csv)
 
-    return a_csv
+    a_zip = mydir / "description.zip"
+
+    with ZipFile(a_zip, "w") as f:
+        f.write(a_csv)
+
+    return a_zip
 
 
 @pytest.fixture(scope="module")
