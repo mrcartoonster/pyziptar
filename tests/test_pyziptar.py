@@ -5,7 +5,8 @@ import pytest
 from typer.testing import CliRunner
 from yakutils import write_csv
 
-from pyziptar import __version__, app
+from pyziptar import __version__
+from pyziptar.main import app
 
 from .conftest import fake
 
@@ -32,6 +33,6 @@ def test_app(tmp_path_factory):
     with ZipFile(a_zip, "w") as f:
         f.write(a_csv)
 
-    result = runner.invoke(app, a_zip)
+    result = runner.invoke(app, [a_zip])
 
     assert result.exit_code == 0
