@@ -16,7 +16,7 @@ def unzip(
         exists=True,
         file_okay=True,
         dir_okay=False,
-        resolve_path=True,
+        resolve_path=False,
         help="Pass zipfile(s) to be extracted in current working directory.",
     ),
     names: Optional[bool] = typer.Option(

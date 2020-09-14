@@ -32,17 +32,19 @@ def fake(items: int = 20):
     return schema.create(iterations=items)
 
 
-@pytest.fixture(scope="module")
-def zipfile_csv(tmp_path_factory):
+@pytest.fixture()
+def zipfile_csv(tmp_path):
     """CSV file and directory creator."""
 
-    mydir = tmp_path_factory.mktemp("mydir")
+    d = tmp_path / "sub"
 
-    a_csv = mydir / "description.csv"
+    d.mkdir()
+
+    a_csv = d / "description.csv"
 
     write_csv(fake(), a_csv)
 
-    a_zip = mydir / "description.zip"
+    a_zip = d / "description.zip"
 
     with ZipFile(a_zip, "w") as f:
         f.write(a_csv)

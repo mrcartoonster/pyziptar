@@ -9,7 +9,8 @@
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
 *.ipynb
-
+notebook*
+mydir
 # IPython
 profile_default/
 ipython_config.py

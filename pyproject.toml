@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyziptar"
-version = "0.1.0"
+version = "0.0.1"
 description = ""
 authors = ["Mrnobody <mrcartoonster@icloud.com>"]
 
@@ -38,7 +38,8 @@ markers = [
     "first",
     "second",
     "third",
-    "fourth"
+    "fourth",
+    "versions"
 ]
 
 [build-system]
