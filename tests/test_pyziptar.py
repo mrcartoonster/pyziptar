@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 
+from zipfile import ZipFile
+
 import pytest
 from typer.testing import CliRunner
 from yakutils import write_csv
-from zipfile import ZipFile
 
-from .conftest import fake
 from pyziptar import __version__
 from pyziptar.main import app
+
+from .conftest import fake
 
 runner = CliRunner()
 
@@ -34,7 +36,16 @@ def test_app(tmp_path):
     with ZipFile(a_zip, "w") as f:
         f.write(a_csv)
 
-    result = runner.invoke(app, 'a_zip')
+    result = runner.invoke(app, [a_zip])
 
     assert a_zip.exists()
     assert result.exit_code == 0
+
+
+@pytest.mark.second
+def test_short_names_option(zipfile_csv):
+    """Test that file names are outputted when given -n option."""
+    result = runner.invoke(app, [zipfile_csv.name, "-n"])
+
+    assert result.exit_code == 0
+    assert "['monopoly.csv']" in result.stdout

@@ -31,7 +31,7 @@ yakutils = "^1.7.0"
 black = {version = "^20.8b1", allow-prereleases = true}
 
 [tool.pytest.ini_options]
-addopts = "-rssxX -l --tb=short --strict --emoji -vvv"
+addopts = "-rssxX -l --tb=short --strict --emoji -vvv --instafail"
 xfail_strict = "True"
 markers = [
     "version",
